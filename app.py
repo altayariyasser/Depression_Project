@@ -848,7 +848,35 @@ elif page == "🤖 Model Results":
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("Feature-level importance is shown for the non-PCA models (PCA transforms features into components).")
+    st.markdown("""
+<div class='section-card'>
+<h2>Best Model</h2>
 
+<p>
+The best model was selected based mainly on <b>F1-score</b> and <b>recall</b>, not accuracy alone.
+This is because the project focuses on predicting depression, and detecting actual depression cases is more important than only achieving high accuracy.
+</p>
+
+<p>
+Logistic Regression gave better results for <b>recall</b>. This is useful because recall measures how many actual depression cases the model correctly detected.
+Since the dataset is imbalanced and the depression class has fewer samples, recall is an important metric for this project.
+</p>
+
+<p>
+Random Forest achieved higher accuracy, but its recall was lower. This means that although it performed well overall, it missed more students who actually had depression.
+This shows why accuracy alone can be misleading in an imbalanced classification problem.
+</p>
+
+<p>
+PCA was applied using 10 components for both models. However, the results with PCA were very similar to the results without PCA.
+This means PCA did not significantly improve model performance in this project.
+</p>
+
+<p>
+Overall, <b>Logistic Regression</b> is preferred when the goal is to detect more depression cases, while Random Forest may look better if we only focus on accuracy.
+</p>
+</div>
+""", unsafe_allow_html=True)
 # ═══════════════════════════════════════════════════════════════════════════════
 # 5 — INTERACTIVE PREDICTION
 # ═══════════════════════════════════════════════════════════════════════════════
