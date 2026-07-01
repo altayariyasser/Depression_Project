@@ -743,7 +743,33 @@ elif page == "🧹 Cleaning & Preprocessing":
         f"along the top 2 components, which is why the full {n95}-component version and non-linear "
         "models."
     )
+    st.markdown("""
+<div class='section-card'>
+<b>💡 Cleaning & Preprocessing Summary</b><br><br>
 
+During the cleaning and preprocessing step, unnecessary columns were removed before modeling. 
+The <b>Student_ID</b> column was dropped because it is only an identifier and does not provide useful information for predicting depression.
+
+The columns <b>Social_Media_Group</b> and <b>Sleep_Duration_Group</b> were also removed because they were created only for EDA visualization. 
+They helped us understand patterns in the data, but they were not used as original modeling features.
+
+Categorical features such as <b>Gender</b> and <b>Department</b> were transformed using <b>One-Hot Encoding</b>. 
+This was necessary because machine learning models cannot directly understand text categories. 
+One-Hot Encoding also avoids creating a false order between categories.
+
+The target variable <b>Depression</b> was prepared as a numeric classification target, where <b>1</b> represents depression and <b>0</b> represents no depression.
+
+<b>StandardScaler</b> was applied to the numerical features because they have different scales. 
+For example, <b>Physical_Activity</b> ranges from 0 to 150, while features such as <b>CGPA</b>, <b>Sleep_Duration</b>, and <b>Study_Hours</b> have much smaller ranges. 
+Scaling helps prevent large-scale features from dominating the model.
+
+The data was split into training and testing sets using a stratified split. 
+Stratification was used to make sure both sets had a similar proportion of depression and non-depression cases.
+
+The split was done before fitting the scaler and encoder to avoid data leakage. 
+This means the scaler and encoder learned only from the training data, and then the same transformations were applied to the test data.
+</div>
+""", unsafe_allow_html=True)
 # ═══════════════════════════════════════════════════════════════════════════════
 # 4 — MODEL RESULTS
 # ═══════════════════════════════════════════════════════════════════════════════
